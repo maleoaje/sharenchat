@@ -122,8 +122,8 @@ class HomePageState extends State<HomePage> {
     if (choice.title == 'Log out') {
       handleSignOut();
     } else {
-      Navigator.push(
-          context, MaterialPageRoute(builder: (context) => SettingsPage()));
+      Navigator.push(context,
+          MaterialPageRoute(builder: (context) => const SettingsPage()));
     }
   }
 
@@ -380,16 +380,44 @@ class HomePageState extends State<HomePage> {
               );
             },
             style: ButtonStyle(
-              backgroundColor:
-                  MaterialStateProperty.all<Color>(ColorConstants.greyColor2),
-              shape: MaterialStateProperty.all<OutlinedBorder>(
-                const RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                backgroundColor: MaterialStateProperty.all<Color>(Colors.white),
+                shape: MaterialStateProperty.all<OutlinedBorder>(
+                  const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                  ),
                 ),
-              ),
-            ),
+                elevation: MaterialStateProperty.all(2)),
             child: Row(
               children: <Widget>[
+                Flexible(
+                  child: Container(
+                    margin: const EdgeInsets.only(left: 10),
+                    child: Column(
+                      children: <Widget>[
+                        Container(
+                          alignment: Alignment.centerLeft,
+                          margin: const EdgeInsets.fromLTRB(10, 0, 0, 5),
+                          child: Text(
+                            'Nickname: ${userChat.nickname}',
+                            maxLines: 1,
+                            style: const TextStyle(
+                                color: ColorConstants.primaryColor),
+                          ),
+                        ),
+                        Container(
+                          alignment: Alignment.centerLeft,
+                          margin: const EdgeInsets.fromLTRB(10, 0, 0, 0),
+                          child: Text(
+                            'About ${userChat.nickname}: ${userChat.aboutMe}',
+                            maxLines: 1,
+                            style: const TextStyle(
+                                color: ColorConstants.primaryColor),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                ),
                 Material(
                   borderRadius: const BorderRadius.all(Radius.circular(25)),
                   clipBehavior: Clip.hardEdge,
@@ -430,35 +458,6 @@ class HomePageState extends State<HomePage> {
                           size: 50,
                           color: ColorConstants.greyColor,
                         ),
-                ),
-                Flexible(
-                  child: Container(
-                    margin: const EdgeInsets.only(left: 20),
-                    child: Column(
-                      children: <Widget>[
-                        Container(
-                          alignment: Alignment.centerLeft,
-                          margin: const EdgeInsets.fromLTRB(10, 0, 0, 5),
-                          child: Text(
-                            'Nickname: ${userChat.nickname}',
-                            maxLines: 1,
-                            style: const TextStyle(
-                                color: ColorConstants.primaryColor),
-                          ),
-                        ),
-                        Container(
-                          alignment: Alignment.centerLeft,
-                          margin: const EdgeInsets.fromLTRB(10, 0, 0, 0),
-                          child: Text(
-                            'About me: ${userChat.aboutMe}',
-                            maxLines: 1,
-                            style: const TextStyle(
-                                color: ColorConstants.primaryColor),
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
                 ),
               ],
             ),
