@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "659716644944",
+    "project_id": "sharenchat-b3abf",
+    "storage_bucket": "sharenchat-b3abf.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:659716644944:android:50c2fb3e02ae341439f155",
+        "android_client_info": {
+          "package_name": "com.sharenchat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "659716644944-hd4fol8n9io23kkaee9h2u0lnnje6b12.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.sharenchat",
+            "certificate_hash": "c57a431276b7ed520c0319e1287666c518dfe351"
+          }
+        },
+        {
+          "client_id": "659716644944-61tm104uh49e396cp1j504hq446jklu4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD0z94nljW7-FH_RtMPiM1jp6Ut3_v3HTI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "659716644944-61tm104uh49e396cp1j504hq446jklu4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
