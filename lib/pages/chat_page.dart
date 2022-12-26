@@ -1,3 +1,5 @@
+// ignore_for_file: depend_on_referenced_packages
+
 import 'dart:async';
 import 'dart:io';
 
@@ -103,7 +105,8 @@ class ChatPageState extends State<ChatPage> {
     ImagePicker imagePicker = ImagePicker();
     PickedFile? pickedFile;
 
-    pickedFile = await imagePicker.getImage(source: ImageSource.gallery);
+    pickedFile = (await imagePicker.pickImage(source: ImageSource.gallery))
+        as PickedFile?;
     if (pickedFile != null) {
       imageFile = File(pickedFile.path);
       if (imageFile != null) {

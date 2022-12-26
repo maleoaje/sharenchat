@@ -18,10 +18,8 @@ class FullPhotoPage extends StatelessWidget {
         ),
         centerTitle: true,
       ),
-      body: Container(
-        child: PhotoView(
-          imageProvider: NetworkImage(url),
-        ),
+      body: PhotoView(
+        imageProvider: NetworkImage(url),
       ),
     );
   }
