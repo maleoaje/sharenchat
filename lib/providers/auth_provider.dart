@@ -74,18 +74,13 @@ class AuthProvider extends ChangeNotifier {
               .doc(firebaseUser.uid)
               .set({
             FirestoreConstants.nickname: firebaseUser.displayName,
-            FirestoreConstants.photoUrl: firebaseUser.photoURL,
             FirestoreConstants.id: firebaseUser.uid,
             'createdAt': DateTime.now().millisecondsSinceEpoch.toString(),
-            FirestoreConstants.chattingWith: null
-          });
-          // saving the userdata
-
-          firebaseFirestore
-              .collection(FirestoreConstants.pathUserCollection)
-              .doc(firebaseUser.uid)
-              .set({
+            FirestoreConstants.chattingWith: null,
             "groups": [],
+            "fullName": firebaseUser.displayName,
+            "email": firebaseUser.email,
+            "profilePic": firebaseUser.photoURL,
           });
 
           // Write data to local storage
