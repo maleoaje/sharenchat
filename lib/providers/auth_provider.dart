@@ -79,6 +79,14 @@ class AuthProvider extends ChangeNotifier {
             'createdAt': DateTime.now().millisecondsSinceEpoch.toString(),
             FirestoreConstants.chattingWith: null
           });
+          // saving the userdata
+
+          firebaseFirestore
+              .collection(FirestoreConstants.pathUserCollection)
+              .doc(firebaseUser.uid)
+              .set({
+            "groups": [],
+          });
 
           // Write data to local storage
           User? currentUser = firebaseUser;

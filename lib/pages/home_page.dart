@@ -7,13 +7,13 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:sharenchat/constants/app_constants.dart';
 import 'package:sharenchat/constants/constants.dart';
+import 'package:sharenchat/groupchat/pages/home_page.dart';
 import 'package:sharenchat/providers/providers.dart';
 import 'package:sharenchat/utils/utils.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:provider/provider.dart';
-
 import '../models/models.dart';
 import '../widgets/widgets.dart';
 import 'pages.dart';
@@ -262,6 +262,27 @@ class HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: const [
+            Icon(Icons.group),
+            Text(
+              'Groups',
+              style: TextStyle(fontSize: 11),
+            )
+          ],
+        ),
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const HomeGroupChat(),
+            ),
+          );
+        },
+      ),
       appBar: AppBar(
         backgroundColor: Colors.green,
         title: const Text(
@@ -355,6 +376,7 @@ class HomePageState extends State<HomePage> {
 
   Widget buildItem(BuildContext context, DocumentSnapshot? document) {
     if (document != null) {
+      // fetchuserdata
       UserChat userChat = UserChat.fromDocument(document);
       if (userChat.id == currentUserId) {
         return const SizedBox.shrink();
