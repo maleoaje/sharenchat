@@ -4,8 +4,10 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:sharenchat/constants/constants.dart';
 import 'package:sharenchat/models/models.dart';
 import 'package:sharenchat/providers/providers.dart';
@@ -159,6 +161,12 @@ class ChatPageState extends State<ChatPage> {
     }
   }
 
+  void shareStuff() async {
+    var file = await FilePicker.platform.pickFiles();
+
+    Share.shareFiles([file!.paths[0]!]);
+  }
+
   Widget buildItem(int index, DocumentSnapshot? document) {
     if (document != null) {
       MessageChat messageChat = MessageChat.fromDocument(document);
@@ -190,6 +198,7 @@ class ChatPageState extends State<ChatPage> {
                             bottom: isLastMessageRight(index) ? 20 : 10,
                             right: 10),
                         child: OutlinedButton(
+                          onLongPress: () {},
                           onPressed: () {
                             Navigator.push(
                               context,

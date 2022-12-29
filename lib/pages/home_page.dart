@@ -3,8 +3,10 @@ import 'dart:developer';
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:sharenchat/constants/app_constants.dart';
 import 'package:sharenchat/constants/constants.dart';
 import 'package:sharenchat/groupchat/pages/group_home.dart';
@@ -47,6 +49,7 @@ class HomePageState extends State<HomePage> {
   TextEditingController searchBarTec = TextEditingController();
 
   List<PopupChoices> choices = <PopupChoices>[
+    PopupChoices(title: 'Share Stuff', icon: Icons.share),
     PopupChoices(title: 'Settings', icon: Icons.settings),
     PopupChoices(title: 'Log out', icon: Icons.exit_to_app),
   ];
@@ -118,9 +121,17 @@ class HomePageState extends State<HomePage> {
     }
   }
 
+  void shareStuff() async {
+    var file = await FilePicker.platform.pickFiles();
+
+    Share.shareFiles([file!.paths[0]!]);
+  }
+
   void onItemMenuPress(PopupChoices choice) {
     if (choice.title == 'Log out') {
       handleSignOut();
+    } else if (choice.title == 'Share Stuff') {
+      shareStuff();
     } else {
       Navigator.push(context,
           MaterialPageRoute(builder: (context) => const SettingsPage()));
