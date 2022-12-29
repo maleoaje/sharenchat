@@ -1,10 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:sharenchat/groupchat/helper/helper_function.dart';
+import 'package:provider/provider.dart';
 import 'package:sharenchat/groupchat/pages/chat_page.dart';
 import 'package:sharenchat/groupchat/service/database_service.dart';
 import 'package:sharenchat/groupchat/widgets/widgets.dart';
+import 'package:sharenchat/providers/auth_provider.dart';
 
 class SearchPage extends StatefulWidget {
   const SearchPage({Key? key}) : super(key: key);
@@ -21,20 +22,25 @@ class _SearchPageState extends State<SearchPage> {
   String userName = "";
   bool isJoined = false;
   User? user;
+  late String currentUserId;
+  late AuthProvider authProvider;
 
   @override
   void initState() {
     super.initState();
+    authProvider = context.read<AuthProvider>();
     getCurrentUserIdandName();
   }
 
   getCurrentUserIdandName() async {
-    await HelperFunctions.getUserNameFromSF().then((value) {
-      setState(() {
-        userName = value!;
-      });
-    });
-    user = FirebaseAuth.instance.currentUser;
+    // await HelperFunctions.getUserNameFromSF().then((value) {
+    //   setState(() {
+    //     userName = value!;
+    //   });
+    // });
+    // user = FirebaseAuth.instance.currentUser;
+
+    currentUserId = authProvider.getUserFirebaseId()!;
   }
 
   String getName(String r) {
@@ -169,13 +175,13 @@ class _SearchPageState extends State<SearchPage> {
       subtitle: Text("Admin: ${getName(admin)}"),
       trailing: InkWell(
         onTap: () async {
-          await DatabaseService(uid: user!.uid)
+          await DatabaseService(uid: currentUserId)
               .toggleGroupJoin(groupId, userName, groupName);
           if (isJoined) {
             setState(() {
               isJoined = !isJoined;
             });
-            showSnackbar(context, Colors.green, "Successfully joined he group");
+            showSnackbar(context, Colors.red, "Left the group $groupName");
             Future.delayed(const Duration(seconds: 2), () {
               nextScreen(
                   context,
@@ -187,7 +193,8 @@ class _SearchPageState extends State<SearchPage> {
           } else {
             setState(() {
               isJoined = !isJoined;
-              showSnackbar(context, Colors.red, "Left the group $groupName");
+              showSnackbar(
+                  context, Colors.green, "Successfully joined the group");
             });
           }
         },

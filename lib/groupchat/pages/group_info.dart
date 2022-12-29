@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:sharenchat/groupchat/pages/home_page.dart';
+import 'package:sharenchat/groupchat/pages/group_home.dart';
 import 'package:sharenchat/groupchat/service/database_service.dart';
 import 'package:sharenchat/groupchat/widgets/widgets.dart';
 
@@ -167,7 +167,7 @@ class _GroupInfoState extends State<GroupInfo> {
                         backgroundColor: Theme.of(context).primaryColor,
                         child: Text(
                           getName(snapshot.data['members'][index])
-                              .substring(0, 1)
+                              .substring(0)
                               .toUpperCase(),
                           style: const TextStyle(
                               color: Colors.white,
@@ -176,7 +176,7 @@ class _GroupInfoState extends State<GroupInfo> {
                         ),
                       ),
                       title: Text(getName(snapshot.data['members'][index])),
-                      subtitle: Text(getId(snapshot.data['members'][index])),
+                      subtitle: const Text('member'),
                     ),
                   );
                 },

@@ -7,7 +7,7 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:sharenchat/constants/app_constants.dart';
 import 'package:sharenchat/constants/constants.dart';
-import 'package:sharenchat/groupchat/pages/home_page.dart';
+import 'package:sharenchat/groupchat/pages/group_home.dart';
 import 'package:sharenchat/providers/providers.dart';
 import 'package:sharenchat/utils/utils.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
